@@ -22,7 +22,7 @@ var ServerTerrainChunk = preload("res://terrainChunk.gd")
 @export_range(1,1000, 1) var LOD4_Distance := 550
 
 @export_category("Debug")
-var render_wireframe = true
+var render_wireframe = false
 var viewer_position = Vector2()
 var terrain_chunks = {}
 var generation_queue = []
