@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqubv233mmjri"]
+
+[ext_resource type="Script" path="res://endlessTerrain.gd" id="1_00bos"]
+[ext_resource type="Shader" path="res://terrain.gdshader" id="2_icylo"]
+[ext_resource type="Texture2D" uid="uid://dw4vkxd8g1h1p" path="res://grass.jpg" id="3_fkpn2"]
+[ext_resource type="Texture2D" uid="uid://dm528mfsxqnbe" path="res://rocks.jpeg" id="4_7j1nn"]
+[ext_resource type="PackedScene" uid="uid://dgomgeiqmeobq" path="res://player.tscn" id="5_vrpgm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jng1l"]
+render_priority = 0
+shader = ExtResource("2_icylo")
+shader_parameter/min_grass_height = 0.0
+shader_parameter/max_rock_height = 5.0
+shader_parameter/uvscale = Vector2(5, 5)
+shader_parameter/terrain_grass = ExtResource("3_fkpn2")
+shader_parameter/terrain_rock = ExtResource("4_7j1nn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3ucux"]
+seed = 2
+
+[node name="endlessTerrian" type="Node3D" node_paths=PackedStringArray("viewer")]
+script = ExtResource("1_00bos")
+viewer = NodePath("CharacterBody3D")
+material = SubResource("ShaderMaterial_jng1l")
+noise = SubResource("FastNoiseLite_3ucux")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("5_vrpgm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07285, 0)
